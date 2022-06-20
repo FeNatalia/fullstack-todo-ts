@@ -1,14 +1,34 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
+import Form from './components/Form';
 
 export interface Item {
   message: String;
 }
 
-const App = () => {
+export interface TodoItem {
+  title: string,
+  description: string,
+  isDone: boolean,
+  id: string,
+}
+
+const App: FC = () => {
   const [status, setStatus] = useState(0);
   const [data, setData] = useState<Item[]>([]);
-  
+
+  const [items, setItems] = useState<TodoItem[]>([]);
+
+  useEffect(() => {
+    const data = localStorage.getItem('items');
+    if (data) {
+      setItems(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
+
   useEffect(() => {
     getMessage();
   }, []);
@@ -32,6 +52,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Todo App</h1>
+      <Form onSubmit={(itemData: TodoItem) => setItems([...items, itemData])}/>
       {status === 0 && <p>⏱ Loading ... ⏱</p>}
       {status === 1 && <h2>{Items}</h2>}
       {status === 2 && <p>🚨 Error 🚨</p>}
