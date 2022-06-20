@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
+import './styles/styles.css';
 import Form from './components/Form';
 import { TodoItem, TodoList } from './components/TodoList';
 
@@ -44,8 +45,11 @@ const App: FC = () => {
  ))
 
   return (
-    <div className="App">
-      <h1>Todo App</h1>
+    <div className="page-wrapper">
+      <header className="header">
+        <h1 className="header__title">Todo App</h1>
+        <h2 className="header__subtitle">We help you to stay organized!</h2>
+      </header>
       <Form onSubmit={(itemData: TodoItem) => setItems([...items, itemData])}/>
       <TodoList items={items} setItems={setItems} />
       {status === 0 && <p>⏱ Loading ... ⏱</p>}
