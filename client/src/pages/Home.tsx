@@ -4,8 +4,9 @@ import { getTodos } from '../api';
 import TodoCard from '../components/TodoCard';
 
 export interface TodoItem {
-    title: string,
-    description: string
+  title: string,
+  description: string,
+  _id: string,
 }
 
 const Home: FC = () => {
