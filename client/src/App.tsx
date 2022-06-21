@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import './styles/styles.css';
 import Form from './components/Form';
 import { TodoItem, TodoList } from './components/TodoList';
+import { getTodos } from './api';
 
 export interface Item {
   message: String;
@@ -9,39 +10,36 @@ export interface Item {
 
 const App: FC = () => {
   const [status, setStatus] = useState(0);
-  const [data, setData] = useState<Item[]>([]);
 
   const [items, setItems] = useState<TodoItem[]>([]);
 
-  useEffect(() => {
-    const data = localStorage.getItem('items');
-    if (data) {
-      setItems(JSON.parse(data));
-    }
-  }, []);
+  const [todos, setTodos] = useState<TodoItem[]>([]);
 
   useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
-
-  useEffect(() => {
-    getMessage();
-  }, []);
-
-  const getMessage = async () => {
     try {
-      const res = await fetch("/api");
-      const result = await res.json();
-      await setData([result]);
-      console.log('my result', result)
-      setStatus(1);
+      getTodos()
+        .then(res => {
+          setTodos(res);
+          setStatus(1);
+        });
     } catch {
       setStatus(2);
     }
-  }
+  }, []);
 
- const Items = data.map((item: Item, index) => (
-  <p key={index}>{item.message}</p>
+  // useEffect(() => {
+  //   const data = localStorage.getItem('items');
+  //   if (data) {
+  //     setItems(JSON.parse(data));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem('items', JSON.stringify(items));
+  // }, [items]);
+
+ const AllTodos = todos.map((todo: TodoItem, index) => (
+  <p key={index}>{todo.title} - {todo.description}</p>
  ))
 
   return (
@@ -53,7 +51,7 @@ const App: FC = () => {
       <Form onSubmit={(itemData: TodoItem) => setItems([...items, itemData])}/>
       <TodoList items={items} setItems={setItems} />
       {status === 0 && <p>⏱ Loading ... ⏱</p>}
-      {status === 1 && <h2>{Items}</h2>}
+      {status === 1 && AllTodos }
       {status === 2 && <p>🚨 Error 🚨</p>}
     </div>
   );
