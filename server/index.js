@@ -37,6 +37,13 @@ app.post("/api/todos", async (req, res) => {
     .catch((err) => res.json({ error: err.message }));
 });
 
+app.get("/api/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  const post = await Todo.findById(id).then((result) => {
+    return res.json(result);
+  });
+});
+
 app.get("/api", (_req, res) => {
   return res.json({ message: "You have reached the Todo Api" });
 });
