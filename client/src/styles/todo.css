@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
+
+/* CSS */
+/* Page */
+.page-wrapper {
+  font-family: 'Public Sans', sans-serif;
+  display: grid;
+  justify-content: center;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin: 20px;
+}
+
+.header__title {
+  font-size: 30px;
+}
+
+.header__subtitle {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* Form */
+.form {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  display: grid;
+  background-color: var(--color-light-red);
+}
+
+.form__title {
+  margin: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 18px;
+  justify-self: flex-start;
+  border:2px solid var(--color-dark-red);
+}
+
+.form__label-description {
+  margin: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  display: grid;
+}
+
+.form__label-title {
+  margin: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  display: grid;
+}
+
+.form__new-todo-title {
+  height: 22px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.form__new-todo-body {
+  height: 22px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 16px;
+}
+
+/* List */
+.todo-list {
+  display: grid;
+  justify-content: center;
+}
+
+.todo--completed .todo__title {
+  text-decoration: line-through;
+}
+
+.todo--completed .todo__body {
+  text-decoration: line-through;
+}
+
+.todo--incompleted {
+  background-color: var(--color-light-green);
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  display: grid;
+  list-style-type: none;
+  min-width: 300px;
+}
+
+.todo--completed {
+  background-color: var(--color-light-gray);
+  color: var(--color-dark-gray);
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  display: grid;
+  list-style-type: none;
+  min-width: 300px;
+}
+
+.todo__title {
+  margin: 5px;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.todo__body {
+  margin: 5px;
+  font-size: 16px;
+}
+
+.todo__body:first-letter {
+  text-transform: uppercase;
+}
+
+/* Buttons */
+#btnAddTodo {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 5px;
+  background-color: var(--color-light-green);
+  border: 2px solid green;
+  color: var(--color-dark-green);
+}
+
+#btnAddTodo:hover{
+    background-color: green;
+    color: white;
+}
+#btnDeleteTodo {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 5px;
+  background-color: var(--color-light-red);
+  border: 2px solid var(--color-dark-red);
+  color: red;
+}
+
+#btnDeleteTodo:hover {
+    background-color: red;
+    color: white;
+}
+/* Tablet */
+ @media screen and (min-width: 768px) {
+  .todo--incompleted {
+    min-width: 500px;
+  }
+
+  .todo--completed {
+    min-width: 500px;
+  }
+
+  .form {
+    min-width: 500px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+  .todo--incompleted {
+    min-width: 800px;
+  }
+
+  .todo--completed {
+    min-width: 800px;
+  }
+
+  .form {
+    min-width: 800px;
+  }
+
+  .btn {
+    font-size: 18px;
+  }
+}
