@@ -1,6 +1,11 @@
 import axios from "axios";
-// prettier-ignore
+
 const base = "http://localhost:3001";
+
+export const addTodo = async (todo) => {
+  const res = await axios.post(`${base}/api/todos`, todo);
+  return res.data;
+};
 
 export const getTodos = async () => {
   const url = `${base}/api/todos`;

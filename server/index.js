@@ -29,6 +29,14 @@ app.get("/api/todos", async (req, res) => {
   });
 });
 
+app.post("/api/todos", async (req, res) => {
+  const todo = new Todo(req.body);
+  todo
+    .save()
+    .then((result) => res.status(201).json(result))
+    .catch((err) => res.json({ error: err.message }));
+});
+
 app.get("/api", (_req, res) => {
   return res.json({ message: "You have reached the Todo Api" });
 });
