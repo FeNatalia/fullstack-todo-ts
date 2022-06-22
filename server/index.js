@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Todo = require("./models/todo");
+const Item = require("./models/item");
 
 app.use(cors());
 
@@ -35,6 +36,21 @@ app.post("/api/todos", async (req, res) => {
     .save()
     .then((result) => res.status(201).json(result))
     .catch((err) => res.json({ error: err.message }));
+});
+
+app.post("/api/todos/:id", async (req, res) => {
+  const item = new Item(req.body);
+  item
+    .save()
+    .then((result) => res.status(201).json(result))
+    .catch((err) => res.json({ error: err.message }));
+});
+
+app.get("/api/todos/:id/items", async (req, res) => {
+  const { id } = req.params;
+  const post = await Item.find({ owner: id }).then((result) => {
+    return res.json(result);
+  });
 });
 
 app.get("/api/todos/:id", async (req, res) => {

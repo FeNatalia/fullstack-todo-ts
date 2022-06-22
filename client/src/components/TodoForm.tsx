@@ -1,28 +1,32 @@
 import React, { useContext, useState } from 'react';
-import { addTodo } from '../api';
+import { addItem } from '../api';
 import { DataContext } from '../state/DataProvider';
 import { v4 as uuidv4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 
-const Form = () => {
-  const {todos, setTodos} = useContext(DataContext);
+const TodoForm = () => {
+  const {items, setItems} = useContext(DataContext);
+  const { id } = useParams();
+  const ownerId = id;
 
   const initialItem = {
     title: '',
     description: '',
-    todoId: '',
+    itemId: '',
+    owner: '',
   };
 
   const [item, setItem] = useState(initialItem);
 
   const handleChange = (e: any) => {
     const { value, name } = e.target;
-    setItem({ ...item, [name]: value, todoId: uuidv4() });
+    setItem({ ...item, [name]: value, itemId: uuidv4(), owner: ownerId || ''});
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addTodo(item);
-    setTodos([...todos, item]); 
+    addItem(item);
+    setItems([...items, item]); 
     setItem(initialItem);
   };
 
@@ -56,4 +60,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default TodoForm;

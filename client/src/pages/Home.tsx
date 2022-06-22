@@ -1,5 +1,5 @@
-import React, { FC, useState, useEffect, useContext } from 'react';
-import Form from '../components/Form';
+import React, { FC, useEffect, useContext } from 'react';
+import ListForm from '../components/ListForm';
 import { getTodos } from '../api';
 import TodoCard from '../components/TodoCard';
 import { DataContext } from '../state/DataProvider';
@@ -24,12 +24,12 @@ const Home: FC = () => {
   return (
     <div className="page-wrapper">
       <header className="header">
-        <h1 className="header__title">Todo App</h1>
-        <h2 className="header__subtitle">We help you to stay organized!</h2>
+        <h1 className="header__title">Organize App</h1>
+        <h2 className="header__subtitle">We help you to save your lists with todos!</h2>
       </header>
-      <Form />
+      <ListForm />
       {todos.length === 0 ? (
-          <p>No items found!</p>
+          <p>No lists found!</p>
         ) : (
           todos.map((todo: TodoItem, index: any) => (
             <TodoCard key={index} todo={todo} index={index}/>
