@@ -39,7 +39,7 @@ app.post("/api/todos", async (req, res) => {
 
 app.get("/api/todos/:id", async (req, res) => {
   const { id } = req.params;
-  const post = await Todo.findById(id).then((result) => {
+  const post = await Todo.findOne({ todoId: id }).then((result) => {
     return res.json(result);
   });
 });
