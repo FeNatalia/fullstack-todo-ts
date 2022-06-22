@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { addTodo } from '../api';
+import { DataContext } from '../state/DataProvider';
+import { v4 as uuidv4 } from 'uuid';
 
-const Form = ({ onSubmit }:{onSubmit: any }) => {
+const Form = () => {
+  const {todos, setTodos} = useContext(DataContext);
+
   const initialItem = {
     title: '',
-    description: ''
+    description: '',
+    todoId: '',
   };
 
   const [item, setItem] = useState(initialItem);
 
   const handleChange = (e: any) => {
     const { value, name } = e.target;
-    setItem({ ...item, [name]: value });
+    setItem({ ...item, [name]: value, todoId: uuidv4() });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     addTodo(item);
-    onSubmit(item); 
+    setTodos([...todos, item]); 
     setItem(initialItem);
   };
 

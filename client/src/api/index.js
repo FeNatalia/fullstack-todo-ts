@@ -12,3 +12,9 @@ export const getTodos = async () => {
   const res = await axios.get(url);
   return res.data;
 };
+
+export const getTodo = async (id) => {
+  const url = `${base}/api/todos/${id}`;
+  const res = await axios.get(url);
+  return res.data;
+};

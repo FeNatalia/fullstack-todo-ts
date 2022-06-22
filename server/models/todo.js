@@ -9,6 +9,10 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  todoId: {
+    type: String,
+    required: true,
+  },
 });
 
 const Todo = mongoose.model("Todo", todoSchema);
