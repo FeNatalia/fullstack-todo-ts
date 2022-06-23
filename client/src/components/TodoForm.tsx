@@ -14,13 +14,14 @@ const TodoForm = () => {
     description: '',
     itemId: '',
     owner: '',
+    isDone: false,
   };
 
   const [item, setItem] = useState(initialItem);
 
   const handleChange = (e: { target: { value: String; name: String | Number | Symbol | any } }) => {
     const { value, name } = e.target;
-    setItem({ ...item, [name]: value, itemId: uuidv4(), owner: ownerId || ''});
+    setItem({ ...item, [name]: value, itemId: uuidv4(), isDone: false, owner: ownerId || ''});
   };
 
   const handleSubmit = (e: React.FormEvent) => {
