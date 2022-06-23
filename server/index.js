@@ -46,6 +46,15 @@ app.post("/api/todos/:id", async (req, res) => {
     .catch((err) => res.json({ error: err.message }));
 });
 
+app.patch("/api/todos", async (req, res) => {
+  const todo = req.body;
+  const post = await Todo.updateOne({ todoId: todo.todoId }, [
+    { $set: { isDone: { $eq: [false, "$isDone"] } } },
+  ]).then((result) => {
+    return res.json(result);
+  });
+});
+
 app.get("/api/todos/:id/items", async (req, res) => {
   const { id } = req.params;
   const post = await Item.find({ owner: id }).then((result) => {

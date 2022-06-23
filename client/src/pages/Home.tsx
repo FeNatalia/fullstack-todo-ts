@@ -23,7 +23,7 @@ const Home = () => {
       </header>
       <ListForm />
       {todos.length === 0 ? (
-          <p>No lists found!</p>
+          <p className='message-warning'>No lists found! Add by filling the form above</p>
         ) : (
           todos.map((todo: TodoItem, index: React.Key | null | undefined) => (
             <TodoCard key={index} todo={todo} index={index}/>

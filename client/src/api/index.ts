@@ -30,3 +30,8 @@ export const getItems = async (id: String | undefined) => {
   const res = await axios.get(url);
   return res.data;
 };
+
+export const markDone = async (todo: TodoItem) => {
+  const res = await axios.patch(`${base}/api/todos`, todo);
+  return res.data;
+};
