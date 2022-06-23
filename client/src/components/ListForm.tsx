@@ -14,7 +14,7 @@ const ListForm = () => {
 
   const [item, setItem] = useState(initialItem);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: { target: { value: String; name: String | Number | Symbol | any } }) => {
     const { value, name } = e.target;
     setItem({ ...item, [name]: value, todoId: uuidv4() });
   };
