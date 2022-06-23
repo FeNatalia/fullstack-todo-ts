@@ -13,6 +13,10 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isDone: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const Todo = mongoose.model("Todo", todoSchema);

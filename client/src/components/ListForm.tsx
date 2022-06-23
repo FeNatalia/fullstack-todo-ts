@@ -10,13 +10,14 @@ const ListForm = () => {
     title: '',
     description: '',
     todoId: '',
+    isDone: false,
   };
 
   const [item, setItem] = useState(initialItem);
 
   const handleChange = (e: { target: { value: String; name: String | Number | Symbol | any } }) => {
     const { value, name } = e.target;
-    setItem({ ...item, [name]: value, todoId: uuidv4() });
+    setItem({ ...item, [name]: value, todoId: uuidv4(), isDone: false, });
   };
 
   const handleSubmit = (e: React.FormEvent) => {

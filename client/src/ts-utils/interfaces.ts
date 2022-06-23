@@ -2,6 +2,7 @@ interface TodoItem {
     title: string,
     description: string,
     todoId: string,
+    isDone: boolean,
     _id?: string,
 }
 
@@ -10,6 +11,7 @@ interface ListItem {
     description: string,
     itemId: string,
     owner: string,
+    isDone: boolean,
     _id?: string,
 }
 

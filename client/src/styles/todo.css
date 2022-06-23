@@ -29,7 +29,7 @@
   border-radius: 5px;
   padding: 10px;
   display: grid;
-  background-color: var(--color-light-red);
+  background-color: rgb(206, 239, 245);
 }
 
 .form__title {
@@ -39,7 +39,6 @@
   padding: 5px;
   border-radius: 18px;
   justify-self: flex-start;
-  border:2px solid var(--color-dark-red);
 }
 
 .form__label-description {
@@ -70,7 +69,47 @@
   font-size: 16px;
 }
 
-/* List */
+/* Details */
+.details-card {
+  border: 2px solid rgb(208, 208, 208);
+  border-radius: 10px;
+}
+
+#details-page .form {
+  background-color: rgb(248, 221, 186);
+}
+
+#details-page .todo--incompleted {
+  background-color: rgb(249, 233, 218);
+}
+
+.message-warning {
+  margin: 20px;
+  color: red;
+  text-align: center;
+}
+
+.details-title{
+  margin: 10px;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.details-subtitle:first-letter {
+  text-transform: uppercase;
+}
+
+.details-subtitle{
+  margin: 10px;
+  font-size: 18px;
+}
+
+.update-message {
+  margin: 10px;
+  color: green;
+}
+
+/* Shared */
 .todo-list {
   display: grid;
   justify-content: center;
@@ -116,6 +155,27 @@
   font-size: 16px;
 }
 
+.todo_link {
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid green;
+  color: green;
+  justify-self: flex-start;
+}
+
+.todo_link:hover {
+  color: white;
+  background-color: green;
+}
+
+.todo-under{
+  margin-top: 15px;
+  text-align: center;
+}
+
 .todo__body:first-letter {
   text-transform: uppercase;
 }
@@ -128,47 +188,70 @@
   font-weight: bold;
   text-decoration: none;
   margin: 5px;
-  background-color: var(--color-light-green);
-  border: 2px solid green;
-  color: var(--color-dark-green);
+  background-color:  rgb(206, 239, 245);
+  border: 2px solid rgb(3, 62, 151);
+  color: rgb(3, 62, 151);
+  justify-self: flex-start;
 }
 
 #btnAddTodo:hover{
-    background-color: green;
+    background-color: rgb(3, 62, 151);
     color: white;
-}
-#btnDeleteTodo {
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  margin: 5px;
-  background-color: var(--color-light-red);
-  border: 2px solid var(--color-dark-red);
-  color: red;
 }
 
-#btnDeleteTodo:hover {
-    background-color: red;
-    color: white;
+#btn-back {
+  margin-top: 50px;
+  padding: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid green;
+  color: green;
+  justify-self: flex-start;
 }
+
+.btn-update {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid orange;
+  color: orange;
+  justify-self: flex-start;
+}
+
+.btn-update:hover {
+  background-color: orange;
+  color: white;
+}
+
+#details-page #btnAddTodo {
+  background-color: rgb(248, 221, 186);
+}
+
+#details-page #btnAddTodo:hover {
+  background-color: rgb(248, 221, 186);
+  background-color: rgb(3, 62, 151);
+}
+
+#btn-back:hover {
+  color: white;
+  background-color: green;
+}
+
 /* Tablet */
  @media screen and (min-width: 768px) {
   .todo--incompleted {
     min-width: 500px;
   }
-
   .todo--completed {
     min-width: 500px;
   }
-
   .form {
     min-width: 500px;
-  }
-
-  .btn {
-    font-size: 16px;
   }
 }
 
@@ -177,16 +260,10 @@
   .todo--incompleted {
     min-width: 800px;
   }
-
   .todo--completed {
     min-width: 800px;
   }
-
   .form {
     min-width: 800px;
-  }
-
-  .btn {
-    font-size: 18px;
   }
 }

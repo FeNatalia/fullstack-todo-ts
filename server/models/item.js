@@ -17,6 +17,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isDone: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const Item = mongoose.model("Item", itemSchema);
