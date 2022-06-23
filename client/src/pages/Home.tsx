@@ -1,17 +1,11 @@
-import React, { FC, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import ListForm from '../components/ListForm';
 import { getTodos } from '../api';
 import TodoCard from '../components/TodoCard';
 import { DataContext } from '../state/DataProvider';
+import { TodoItem } from '../ts-utils/interfaces';
 
-export interface TodoItem {
-  title: string,
-  description: string,
-  todoId: string,
-  _id: string,
-}
-
-const Home: FC = () => {
+const Home = () => {
   const {todos, setTodos} = useContext(DataContext);
 
   useEffect(() => {
@@ -19,7 +13,7 @@ const Home: FC = () => {
         .then(res => {
           setTodos(res);
         });
-  }, []);
+  }, [setTodos]);
 
   return (
     <div className="page-wrapper">
@@ -31,7 +25,7 @@ const Home: FC = () => {
       {todos.length === 0 ? (
           <p>No lists found!</p>
         ) : (
-          todos.map((todo: TodoItem, index: any) => (
+          todos.map((todo: TodoItem, index: React.Key | null | undefined) => (
             <TodoCard key={index} todo={todo} index={index}/>
          ))
         )}

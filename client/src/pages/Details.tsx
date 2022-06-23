@@ -3,17 +3,10 @@ import { useParams } from "react-router-dom";
 import { getItems, getTodo } from '../api';
 import TodoForm from '../components/TodoForm';
 import { DataContext } from '../state/DataProvider';
-
-export interface ListItem {
-  title: string,
-  description: string,
-  itemId: string,
-  owner: string,
-  _id: string,
-}
+import { ListItem, TodoItem } from '../ts-utils/interfaces';
 
 const Details = () => {
-  const [todo, setTodo] = useState<any>([]);
+  const [todo, setTodo] = useState<TodoItem>();
   const { id } = useParams();
   const {items, setItems} = useContext(DataContext);
 
@@ -22,14 +15,14 @@ const Details = () => {
         .then(res => {
           setTodo(res);
         });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     getItems(id)
       .then(res => {
         setItems(res);
       });
-  }, []);
+  }, [id, setItems]);
 
   return (
     <div className="page-wrapper">
@@ -44,7 +37,7 @@ const Details = () => {
         {items.length === 0 ? (
           <p>No todos found! Add by filling the form above. </p>
         ) : (
-          items.map((item: ListItem, index: any) => (
+          items.map((item: ListItem, index: React.Key | null | undefined) => (
             <div className='todo--incompleted' key={index}>
               <h3 className="todo__title">{item.title}</h3>
               <p className="todo__body">{item.description}</p>
